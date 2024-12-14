@@ -9,6 +9,9 @@
 *{
     font-family: "Poiret One", sans-serif;
     font-weight: bolder;
+    padding: 0; 
+    margin: 0;  
+    box-sizing: border-box; 
 }
 .c-blue{
     background-color: rgb(1,46,113);
@@ -60,12 +63,37 @@
  
 }
 
+.box-2{
+    border: 1px solid black;
+    background-color: rgb(234, 234, 234);
+    height: 45px;
+    text-decoration: none;
+    list-style-type: none;
 
-.circle {
+
+ 
+}
+
+
+
+
+  .circle_red{
+    
     height: 100px;
     width: 100px;
-    border: 1px solid red;
-    /* background-color: #bbb; */
+    border: 1px solid red;    
     border-radius: 50%;
     display: inline-block;
   }
+
+
+  .circle_green{
+    height: 100px;
+    width: 100px;
+    border: 1px solid green;    
+    border-radius: 50%;
+    display: inline-block;
+  }
+/* .margin_r{
+    margin-right: 1000em;
+} */
