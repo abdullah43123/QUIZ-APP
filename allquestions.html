@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>All QUESTIONS</title>
 </head>
-<body>
+<body id="bg-color">
     
     <section>
         <div class="">
@@ -16,6 +16,8 @@
                 <div>
                     <button class="me-2 btn btn-light" onclick="result()">Results</button> 
                     <button class="me-4 btn btn-light" onclick="exit()">Exit</button> 
+                    <button onclick="dark()">Dark</button>
+                    <button onclick="white()">White</button>
                 </div>
     
                 <!-- <h4 class="me-4">V 01. BETA</h4> -->
@@ -58,7 +60,7 @@
         </div>
     </section>
 
-<!-- 
+
     <section>
         <div class="resultWindow" id="resultWindow">
             <div class="container d-flex flex-column">
@@ -72,14 +74,14 @@
                     <table>
                         <tr>
                             <td class="width">Total Questions</td>
-                            <td id="totalQue">15</td>
+                            <td id="totalQue">6</td>
                         </tr>
                     </table>
                     <hr>
                     <table>
                         <tr>
                             <td class="width">Correct Questions</td>
-                            <td id="correctQue">7</td>
+                            <td id="correctQue"></td>
                         </tr>
                     </table>
                     <div class="d-flex flex-column align-items-center justify-content-center mt-4">
@@ -92,7 +94,7 @@
             </div>
     
         </div>
-    </section> -->
+    </section>
     <a href="./dashboard.html">Dashborad</a>
     <a href="./index.html">Home</a>
     <a href="signup.html">Sign Up</a>

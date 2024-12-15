@@ -73,12 +73,19 @@
 
  
 }
+.dark{
+    background-color: black;
+    color: white    ;
+}
 
-
+.white{
+    background-color: white;
+    
+}
 
 
   .circle_red{
-    
+
     height: 100px;
     width: 100px;
     border: 1px solid red;    

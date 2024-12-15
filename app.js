@@ -7,7 +7,8 @@ function openTest(){
 }
 
 function result(){
-    window.location.href = "./result.html"
+  quizWindow.style.display = 'none'
+  resultWindow.style.display = 'block'
 }
 
 function exit(){
@@ -19,18 +20,34 @@ function home(){
 }
 
 function signup(){
-  var name = document.getElementById('name');
-  var email = document.getElementById('email');
-  var password = document.getElementById('password');
+  var name = document.getElementById('name').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var password = document.getElementById('password').value.trim();
 
-  localStorage.setItem("name",name.value);
-  localStorage.setItem("email",email.value);
-  localStorage.setItem("password",password.value);
+  localStorage.setItem("name",name);
+  localStorage.setItem("email",email);
+  localStorage.setItem("password",password);
+  // checkSignUser(name,email,password);
+  
+  window.location.href = "./login.html";
+}
 
-  window.location.href = "./login.html"
+function checkSignUser(name,email,password){
+  
+  var getName = localStorage.getItem('name')
+  var getEmail = localStorage.getItem("email")
+  var getPassword = localStorage.getItem("password")
+  
+  if (getName === name && getEmail === email && getPassword === password) {
+    alert("User already signed up.");
+    return;
+  }
+  alert("New user signed up successfully!");
+  window.location.href = "./login.html";
 }
 
 function dashboard() {
+  // var getName = localStorage.getItem('name')
   var getEmail = localStorage.getItem("email")
   var getPassword = localStorage.getItem("password")
   
@@ -128,8 +145,12 @@ var htmlQuiz = [
     //   option4: "radio",
     //   answer: "text",
     // },
-];
-
+  ];
+  
+  
+    var totalQuestions = document.getElementById('totalQue');
+    var percentageSpace = document.getElementById('percentage');
+    var correctQuestions = document.getElementById('correctQue')
 
 var question = document.getElementById("question");
 var label1 = document.getElementById("label1");
@@ -154,28 +175,16 @@ var quizOptions = document.getElementsByName("quizOption");
 // localStorage.setItem('option3', option3)
 // localStorage.setItem('option4', option4)
 
-// var quizWindow = document.getElementById('quizWindow')
-// var resultWindow = document.getElementById('resultWindow')
+var quizWindow = document.getElementById('quizWindow')
+var resultWindow = document.getElementById('resultWindow')
 // console.log(resultWindow)
 // console.log(quizWindow)
 
-var totalQuestions = document.getElementById('totalQue');
-var correctQueuestions = document.getElementById('correctQue');
-var percentageSpace = document.getElementById('percentage');
 
 var questionCount = 0;
-var score = 0;
+var score = 9;
 
 function renderQuestion(){
-  // var getQuestions = localStorage.getItem('question')
-  // var getLabel1 = localStorage.getItem('label1')
-  // var getLabel2 = localStorage.getItem('label2')
-  // var getLabel3 = localStorage.getItem('label3')
-  // var getLabel4 = localStorage.getItem('label4')
-  // var getOption1 = localStorage.getItem('option1')
-  // var getOption2 = localStorage.getItem('option2')
-  // var getOption3 = localStorage.getItem('option3')
-  // var getOption4 = localStorage.getItem('option4')
 
   question.innerHTML = htmlQuiz[questionCount].question
 
@@ -231,20 +240,17 @@ function next() {
       renderQuestion();
     } else {
 
-       showResult()
+      showResult()
     }
   }
 }
 
 function showResult(){
-  // quizWindow.style.display = 'none'
+
+  quizWindow.style.display = 'none'
 
 
-  // resultWindow.style.display = 'block'
-  
-  console.log(score);
-  window.location.href = './result.html'
-  console.log(score);
+  resultWindow.style.display = 'block'
   var getScore = localStorage.getItem('score');
   console.log(getScore);
   
@@ -257,15 +263,47 @@ function showResult(){
       percentageSpace.className = 'circle_red'
   } else {
       resultStatus = 'Congratulations ! You are Passed'
-      // announcement.className = 'greenText'
       percentageSpace.className = 'circle_green'
 
   }
 
-  // announcement.innerHTML = resultStatus
+  announcement.innerHTML = resultStatus
   totalQuestions.innerHTML = htmlQuiz.length
-  correctQueuestions.innerHTML = score 
+  correctQuestions.innerHTML = score 
   percentageSpace.innerHTML = `${percentage} %`
 }
 
+
+var bodyColor = document.getElementById('bg-color')
+
+function dark(){
+  localStorage.setItem('mode', 'dark')
+  check()
+}
+
+function white(){
+  localStorage.setItem('mode','white')
+  check()
+}
+
+function check(){
+  var checkColor = localStorage.getItem('mode')
+  
+  if(checkColor === 'dark'){
+    bodyColor.className = 'dark'
+  }else{
+    bodyColor.className = 'white'
+  }
+}
+
+function setByDefault() {
+  var checkMode = localStorage.getItem("mode");
+  if (checkMode === null) {
+    localStorage.setItem("mode" , "white");
+    check();  
+  } else {
+    check();
+  }
+}
+window.onload = setByDefault();
 window.onload = renderQuestion();
